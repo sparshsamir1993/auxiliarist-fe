@@ -19,11 +19,7 @@ import {
   Pie,
 } from "recharts";
 import { HOSPITAL_ADMIN_ROLE, ADMIN_ROLE, USER_ROLE } from "../../constants";
-import { mainStyles } from "../../styles/styles";
 
-// const Dashboard = () => {
-
-// }
 
 class Dashboard extends Component {
   constructor(props) {

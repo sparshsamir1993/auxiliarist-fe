@@ -10,9 +10,8 @@ import {
 } from "../../../../actions";
 import { checkStoredTokens } from "../../../../utils";
 import { Container } from "@mui/material";
-import { mainStyles } from "../../../../styles/styles";
+
 const UserList = (props) => {
-  const appStyles = mainStyles();
   const history = useNavigate();
   const [adminUserList, changeAdminUserList] = useState([]);
   if (!props.auth.id) {
@@ -48,7 +47,7 @@ const UserList = (props) => {
 
   return (
     <Container maxWidth="lg">
-      <div className={appStyles.mt100}>
+      <div className=".mt100">
         // TODO
       </div>
     </Container>

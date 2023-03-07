@@ -24,7 +24,6 @@ import {
 } from "../../../../actions";
 import { connect } from "react-redux";
 import MaterialAutoSelect from "../../../utilComponents/MaterialAutoComplete";
-import { mainStyles } from "../../../../styles/styles";
 
 const useStyles = makeStyles(() => ({
   itemStyle: {
@@ -50,7 +49,6 @@ const setHospitalDetails = (hospital) => (dispatch) => {
 };
 
 let UserEdit = (props) => {
-  const appStyles = mainStyles();
   const history = useNavigate();
   const classes = useStyles();
   const [isHAdmin, setURole] = React.useState(false);
@@ -77,7 +75,7 @@ let UserEdit = (props) => {
         </Typography>
         <form
           onSubmit={handleSubmit(changeUserRole)}
-          className={appStyles.mt25}
+          className=".mt25"
         >
           <Grid container spacing={4}>
             <Grid item xs={6} className={classes.itemStyle}>
@@ -88,7 +86,7 @@ let UserEdit = (props) => {
             </Grid>
           </Grid>
           <Divider />
-          <Grid className={appStyles.mt25} container spacing={4}>
+          <Grid className=".mt25" container spacing={4}>
             <Grid item xs={6} className={classes.itemStyle}>
               <Typography variant="h5">Name</Typography>
             </Grid>
@@ -101,7 +99,7 @@ let UserEdit = (props) => {
             </Grid>
           </Grid>
           <Divider />
-          <Grid container className={appStyles.mt25} spacing={4}>
+          <Grid container className=".mt25" spacing={4}>
             <Grid item xs={6} className={classes.itemStyle}>
               <Typography variant="h5">Role</Typography>
             </Grid>
@@ -125,7 +123,7 @@ let UserEdit = (props) => {
                 aria-label="Save"
                 type="submit"
                 disabled={pristine || submitting}
-                className={appStyles.primaryButton}
+                className=".primaryButton"
               >
                 <Save />
               </Button>

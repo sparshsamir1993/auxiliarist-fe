@@ -1,0 +1,37 @@
+.root {
+  display: "flex";
+}
+.title {
+  flex-grow: 1;
+}
+.appBar {
+  background: "green";
+}
+.appBarShift {
+  margin-left: drawerWidth;
+}
+.menuButton {
+  margin-right: theme.spacing(2);
+}
+.hide {
+  display: "none";
+}
+.drawer {
+  width: drawerWidth;
+  flex-shrink: 0;
+}
+.drawerPaper {
+  width: drawerWidth;
+}
+.drawerHeader {
+  display: "flex";
+  align-items: "center";
+  padding: theme.spacing(0, 1);
+  justify-content: "flex-end";
+}
+.content {
+  flex-grow: 1;
+}
+.contentShift {
+  margin-left: 0;
+}
