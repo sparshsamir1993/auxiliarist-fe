@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 import RouterSwitch from "../RouterSwitch";
 import Loader from "../loader/Loader";
 import { Button } from "@mui/material";
-// import HeaderButtons from "./authComponents/HeaderButtons";
+import HeaderButtons from "../authComponents/HeaderButtons";
 import { connect } from "react-redux";
 // import ErrorAlert from "./alertComponent/CommonAlert";
 import { ADMIN_ROLE } from "../../constants";
@@ -163,10 +163,10 @@ const Header = (props) => {
                             <Menu />
                         </IconButton>
                         <Typography variant="h5" className=".title" noWrap>
-                            Covid Fighter -{" "}
+                            App Title
                             {props.auth.role == ADMIN_ROLE && <span>Admin Panel</span>}
                         </Typography>
-                        {/* <HeaderButtons /> */}
+                        <HeaderButtons />
                     </Toolbar>
                 </AppBar>
                 <Drawer
