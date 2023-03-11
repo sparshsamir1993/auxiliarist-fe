@@ -18,7 +18,7 @@ import {
   PieChart,
   Pie,
 } from "recharts";
-import { HOSPITAL_ADMIN_ROLE, ADMIN_ROLE, USER_ROLE } from "../../constants";
+import { ADMIN_ROLE, USER_ROLE } from "../../constants";
 
 
 class Dashboard extends Component {

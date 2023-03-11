@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { connect } from "react-redux";
 import { Modal } from "@mui/material";
 import { logoutUser } from "../../../actions";
@@ -9,8 +9,11 @@ function getModalStyle() {
     const left = 50;
 
     return {
+        position: "absolute",
         top: `${top}%`,
         left: `${left}%`,
+        height: "200px",
+        width: "200px",
         transform: `translate(-${top}%, -${left}%)`,
     };
 }
@@ -27,7 +30,8 @@ const HeaderButtons = (props) => {
         setOpen(false);
     };
     const body = (
-        <div style={modalStyle} className=".paper">
+
+        <Box style={modalStyle}>
             <h2 id="simple-modal-title">You sure?</h2>
             <p id="simple-modal-description">Are you sure you want to log out?</p>
             <Button
@@ -42,7 +46,7 @@ const HeaderButtons = (props) => {
             <Button color="inherit" onClick={handleClose}>
                 Cancel
             </Button>
-        </div>
+        </Box>
     );
     if (props.auth.id) {
         return (
@@ -53,6 +57,7 @@ const HeaderButtons = (props) => {
                 <Modal
                     open={open}
                     onClose={handleClose}
+                    className=".paper"
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
                 >

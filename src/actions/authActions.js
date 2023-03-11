@@ -57,12 +57,6 @@ export const getUser = (tokens) => async (dispatch) => {
   let refreshToken = user.headers["refresh-token"];
   checkAndUpdateTokens(token, refreshToken);
   dispatch({ type: "FETCH_USER", payload: user.data });
-  if (user.data.hospitalAdmin?.id) {
-    dispatch({
-      type: FETCH_HADMIN_HOSPITAL,
-      payload: user.data.hospitalAdmin.hospital,
-    });
-  }
 };
 
 export const logoutUser = () => (dispatch) => {
