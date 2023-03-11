@@ -12,9 +12,11 @@ function getModalStyle() {
         position: "absolute",
         top: `${top}%`,
         left: `${left}%`,
-        height: "200px",
-        width: "200px",
+        width: "50%",
         transform: `translate(-${top}%, -${left}%)`,
+        backgroundColor: 'white',
+        padding: '20px',
+        borderRadius: '7px'
     };
 }
 

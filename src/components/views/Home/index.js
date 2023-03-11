@@ -11,9 +11,9 @@ const Home = () => {
     const [isLogin, setAuthState] = useState(true);
 
     return (
-        <Grid container spacing={0} className={".container"}>
-            <Grid item xs={8} className={".rightArea"}>
-                <div className={".actionArea"}>
+        <Grid container spacing={0} className="container">
+            <Grid item xs={8} className="rightArea">
+                <div className="actionArea">
                     {isLogin && <LoginForm />}
                     {!isLogin && <SignUpForm />}
                     <Typography
