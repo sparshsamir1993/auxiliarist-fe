@@ -9,7 +9,7 @@ import {
   hideLoading,
 } from "../../../../actions";
 import { checkStoredTokens } from "../../../../utils";
-import { Container } from "@mui/material";
+import { Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 
 const UserList = (props) => {
   const history = useNavigate();
@@ -35,21 +35,54 @@ const UserList = (props) => {
     checkUser();
   }, []);
 
-  const tableColumns = [
-    { title: "Id", field: "id" },
-    { title: "Email", field: "email" },
-    { title: "Name", field: "name" },
-    { title: "Role", field: "role" },
-  ];
-  let userFields = [];
+  const createRowData = () => {
+    const rowFormat = (id, firstName, lastName, email, role) => {
+      return { id, firstName, lastName, email, role }
+    }
 
-  const userListData = async () => { };
+    console.log(props);
+    return Array.isArray(props.adminUserList) && props.adminUserList.length && props.adminUserList.map(user => {
+      return rowFormat(user.id, user.firstName, user.lastName, user.email, user.role);
+    })
+  }
+
 
   return (
     <Container maxWidth="lg">
-      <div className=".mt100">
-        // TODO
-      </div>
+      <TableContainer component={Paper} >
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell>First Name</TableCell>
+              <TableCell>Last Name</TableCell>
+              <TableCell>Email</TableCell>
+              <TableCell>Role</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {Array.isArray(createRowData()) && createRowData().map(row => (
+              <TableRow key={row.id}>
+                <TableCell component="th">
+                  {row.id}
+                </TableCell>
+                <TableCell component="th">
+                  {row.firstName}
+                </TableCell>
+                <TableCell component="th">
+                  {row.lastName}
+                </TableCell>
+                <TableCell component="th">
+                  {row.email}
+                </TableCell>
+                <TableCell component="th">
+                  {row.role}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Container>
   );
 };
