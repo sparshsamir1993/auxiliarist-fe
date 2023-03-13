@@ -6,7 +6,7 @@ import { checkAndUpdateTokens } from "../utils";
 import { getUser, showLoading, hideLoading } from "../actions";
 import Header from "./Header"
 import UserList from "./views/admin/user/UserList";
-// import UserEdit from "./views/admin/user/UserEdit";
+import UserEdit from "./views/admin/user/UserEdit";
 const { BrowserRouter, Route, Routes } = require("react-router-dom");
 
 const RouterSwitch = (props) => {
@@ -17,7 +17,7 @@ const RouterSwitch = (props) => {
 
         <Route exact path="/" element={props.auth.id ? <Dashboard /> : <Home />} />
         <Route exact path="/admin/users" element={<UserList />} />
-        {/* <Route exact path="/admin/users/edit" component={UserEdit} /> */}
+        <Route exact path="/admin/users/edit" element={<UserEdit />} />
       </Routes>
 
     </div>

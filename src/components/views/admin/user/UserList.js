@@ -10,6 +10,7 @@ import {
 } from "../../../../actions";
 import { checkStoredTokens } from "../../../../utils";
 import { Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Edit } from "@mui/icons-material";
 
 const UserList = (props) => {
   const history = useNavigate();
@@ -77,6 +78,9 @@ const UserList = (props) => {
                 </TableCell>
                 <TableCell component="th">
                   {row.role}
+                </TableCell>
+                <TableCell>
+                  <Edit onClick={() => history("/admin/users/edit", { state: row })} />
                 </TableCell>
               </TableRow>
             ))}

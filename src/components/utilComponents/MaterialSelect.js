@@ -4,13 +4,8 @@ import {
   InputLabel,
   Select,
   FormHelperText,
-  makeStyles,
 } from "@mui/material";
-const useStyles = makeStyles(() => ({
-  w100: {
-    width: "100%",
-  },
-}));
+
 const renderFromHelper = ({ touched, error }) => {
   if (!(touched && error)) {
     return;
@@ -21,7 +16,6 @@ const renderFromHelper = ({ touched, error }) => {
 
 const MaterialSelect = (props) => {
   let [iVal, setIVal] = useState("");
-  const classes = useStyles();
   const {
     input,
     label,
@@ -31,7 +25,7 @@ const MaterialSelect = (props) => {
     ...custom
   } = props;
   return (
-    <FormControl error={touched && error} className={classes.w100}>
+    <FormControl error={touched && error} className={".w100"}>
       <InputLabel htmlFor="role-native-simple">{label}</InputLabel>
       <Select
         native

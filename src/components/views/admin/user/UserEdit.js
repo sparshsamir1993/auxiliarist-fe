@@ -3,14 +3,13 @@ import {
   Container,
   Grid,
   Typography,
-  makeStyles,
   Divider,
   IconButton,
   Card,
   Button,
 } from "@mui/material";
 import { Save } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Field, reduxForm, change } from "redux-form";
 import RoleSelect from "../../../adminComponents/RoleSelect";
 import {
@@ -24,86 +23,71 @@ import {
 } from "../../../../actions";
 import { connect } from "react-redux";
 import MaterialAutoSelect from "../../../utilComponents/MaterialAutoComplete";
+let location;
 
-const useStyles = makeStyles(() => ({
-  itemStyle: {
-    textAlign: "center",
-  },
-  formCard: {
-    padding: "10px",
-    marginTop: "100px",
-  },
-  cardHeadingStyle: {
-    marginLeft: "20px",
-  },
-}));
 const validate = (values, props) => {
   const errors = {};
-  if (!values["role"] && !props.location.state.role) {
+  if (!values["role"] && !props.location?.state.role) {
     errors["role"] = "Required";
   }
   return errors;
 };
-const setHospitalDetails = (hospital) => (dispatch) => {
-  dispatch(change("adminUserRole", "hospital", hospital));
-};
 
 let UserEdit = (props) => {
   const history = useNavigate();
-  const classes = useStyles();
   const [isHAdmin, setURole] = React.useState(false);
-  if (!props.location.state.email) {
-    history.goBack();
+  location = useLocation();
+  if (!location?.state?.email) {
+    history("/admin/users");
   }
   const changeUserRole = async (values, dispatch) => {
     let data = {
-      role: values.role ? values.role : props.location?.state?.role,
-      id: props.location.state.id,
-      hospital: values.hospital,
+      role: values.role ? values.role : location?.state?.role,
+      id: location?.state.id
     };
     props.showLoading();
     await props.updateUserRole(data, props.history);
     props.hideLoading();
   };
 
-  const { handleSubmit, pristine, reset, submitting, hospitalList } = props;
+  const { handleSubmit, pristine, reset, submitting } = props;
   return (
     <Container maxWidth="lg">
-      <Card className={classes.formCard}>
-        <Typography variant="h4" className={classes.cardHeadingStyle}>
+      <Card className="formCard">
+        <Typography variant="h4" className="cardHeadingStyle">
           User Details
         </Typography>
         <form
           onSubmit={handleSubmit(changeUserRole)}
-          className=".mt25"
+          className="mt25"
         >
           <Grid container spacing={4}>
-            <Grid item xs={6} className={classes.itemStyle}>
+            <Grid item xs={6} className="itemStyle">
               <Typography variant="h5">Email</Typography>
             </Grid>
-            <Grid item xs={6} className={classes.itemStyle}>
-              <Typography variant="h5">{props.location.state.email}</Typography>
+            <Grid item xs={6} className="itemStyle">
+              <Typography variant="h5">{location?.state?.email}</Typography>
             </Grid>
           </Grid>
           <Divider />
-          <Grid className=".mt25" container spacing={4}>
-            <Grid item xs={6} className={classes.itemStyle}>
+          <Grid className="mt25" container spacing={4}>
+            <Grid item xs={6} className="itemStyle">
               <Typography variant="h5">Name</Typography>
             </Grid>
-            <Grid item xs={6} className={classes.itemStyle}>
+            <Grid item xs={6} className={"itemStyle"}>
               <Typography variant="h5">
-                {props.location.state.name
-                  ? props.location.state.name
+                {location?.state?.name
+                  ? location.state.name
                   : "Not Set"}
               </Typography>
             </Grid>
           </Grid>
           <Divider />
-          <Grid container className=".mt25" spacing={4}>
-            <Grid item xs={6} className={classes.itemStyle}>
+          <Grid container className="mt25" spacing={4}>
+            <Grid item xs={6} className={"itemStyle"}>
               <Typography variant="h5">Role</Typography>
             </Grid>
-            <Grid item xs={6} className={classes.itemStyle}>
+            <Grid item xs={6} className={"itemStyle"}>
               <Field
                 name="role"
                 component={RoleSelect}
@@ -118,7 +102,7 @@ let UserEdit = (props) => {
             </Grid>
           </Grid>
           <Grid container>
-            <Grid item xs={3} className={classes.itemStyle}>
+            <Grid item xs={3} className={"itemStyle"}>
               <Button
                 aria-label="Save"
                 type="submit"
@@ -137,32 +121,20 @@ let UserEdit = (props) => {
 
 const mapStateToProps = (state, props) => {
   let iVal;
-  let hName;
-  let hospitalList = state.adminHospitalList;
   iVal = state.form?.adminUserRole?.values?.role;
-  hName = state.form?.adminUserRole?.values?.hospitalName;
   if (!iVal) {
-    iVal = props.history.location.state.role;
-  }
-  if (!hName) {
-    hName = hospitalList.filter(
-      (hospital) =>
-        hospital.id === props.history.location.state.hospitalAdmin?.hospitalId
-    )[0]?.name;
-    hName = hName ? hName : "";
+    iVal = location?.state.role;
   }
 
   return {
-    initialValues: { role: iVal, hospitalName: { name: hName } },
+    initialValues: { role: iVal },
     selectedRole: iVal,
-    hospitalList,
   };
 };
 
 UserEdit = connect(mapStateToProps, {
   updateUserRole,
   showLoading,
-  setHospitalDetails,
 })(UserEdit);
 
 UserEdit = reduxForm({
