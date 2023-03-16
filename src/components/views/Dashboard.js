@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Button, Container, Grid, Typography } from "@mui/material";
 import {
   logoutUser,
-  getHospitalAdminDashboardMetrics,
   getAdminDashboardMetrics,
 } from "../../actions";
 import { connect } from "react-redux";
@@ -24,7 +23,6 @@ import { ADMIN_ROLE, USER_ROLE } from "../../constants";
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    console.log(props.auth);
     this.state = {};
   }
 
@@ -34,7 +32,6 @@ class Dashboard extends Component {
       let { role } = this.props.auth;
       if (role === ADMIN_ROLE) {
         await this.props.getAdminDashboardMetrics();
-        console.log(this.props.usersToMonthMetrics);
       }
     }
   }
@@ -112,15 +109,10 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    appointmentToMonthMetrics: state.hospitalAdmin?.metrics?.appointmentToMonth,
-    appointmentToStatusMetrics:
-      state.hospitalAdmin?.metrics?.appointmentToStatus,
     usersToMonthMetrics: state?.adminMetrics?.usersToMonth,
-    allAppointmentsToMonthMetrics: state?.adminMetrics?.appointmentToMonth,
   };
 };
 export default connect(mapStateToProps, {
   logoutUser,
-  getHospitalAdminDashboardMetrics,
   getAdminDashboardMetrics,
 })(Dashboard);

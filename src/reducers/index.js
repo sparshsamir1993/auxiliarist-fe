@@ -3,6 +3,7 @@ import authReducer from "./authReducer";
 import loadingReducer from "./loadingReducer";
 import alertReducer from "./alertReducer";
 import adminUserReducer from "./admin/userReducer";
+import adminUsersToMonthAppointmentMetricsReducer from "./admin/metrics/usersToMonthMetricsReducer";
 var formReducer = require("redux-form").reducer;
 
 export default combineReducers({
@@ -11,4 +12,7 @@ export default combineReducers({
   loading: loadingReducer,
   error: alertReducer,
   adminUserList: adminUserReducer,
+  adminMetrics: combineReducers({
+    usersToMonth: adminUsersToMonthAppointmentMetricsReducer
+  }),
 });
