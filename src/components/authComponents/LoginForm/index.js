@@ -30,8 +30,8 @@ let LoginForm = (props) => {
             <Typography variant="h4" gutterBottom style={{ fontFamily: "Raleway" }}>
                 Sign in
             </Typography>
-            <Grid container spacing={3}>
-                <Grid item xs={12} className=".mt25">
+            <Grid container className="mt25">
+                <Grid item xs={12} className="pt0">
                     <Field
                         key="email"
                         type="email"
@@ -41,7 +41,7 @@ let LoginForm = (props) => {
                     />
                 </Grid>
             </Grid>
-            <Grid container spacing={3} className=".mt25">
+            <Grid container className="mt25">
                 <Grid item xs={12}>
                     <Field
                         key="password"
@@ -58,7 +58,7 @@ let LoginForm = (props) => {
                 </div>
             )}
             <Button
-                className=".mt25"
+                className="mt25"
                 type="submit"
                 disabled={submitting}
                 variant="outlined"

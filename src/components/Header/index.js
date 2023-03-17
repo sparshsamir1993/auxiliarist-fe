@@ -29,6 +29,7 @@ import { ADMIN_ROLE } from "../../constants";
 import { showLoading, hideLoading, getUser } from "../../actions";
 import { checkAndUpdateTokens } from "../../utils";
 import "../../styles/main.scss"
+import "./index.scss"
 
 const Header = (props) => {
     const theme = useTheme();
@@ -56,7 +57,7 @@ const Header = (props) => {
         if (props.auth.role === ADMIN_ROLE) {
             return (
                 <React.Fragment>
-                    <Typography variant="h6" align="center" className=".mt10">
+                    <Typography variant="h6" align="center" className="mt10">
                         Admin Links
                     </Typography>
                     <List>
@@ -66,22 +67,6 @@ const Header = (props) => {
                                     <Inbox />
                                 </ListItemIcon>
                                 <ListItemText primary={"User List"} />
-                            </Link>
-                        </ListItem>
-                        <ListItem button key={"Question List"} onClick={handleDrawerClose}>
-                            <Link to="/admin/questions" className="nav-link">
-                                <ListItemIcon>
-                                    <Inbox />
-                                </ListItemIcon>
-                                <ListItemText primary={"Question List"} />
-                            </Link>
-                        </ListItem>
-                        <ListItem button key={"Hospital List"} onClick={handleDrawerClose}>
-                            <Link to="/admin/hospitals" className="nav-link">
-                                <ListItemIcon>
-                                    <Inbox />
-                                </ListItemIcon>
-                                <ListItemText primary={"Hospital List"} />
                             </Link>
                         </ListItem>
                     </List>
@@ -145,12 +130,12 @@ const Header = (props) => {
     return (
         <div>
             <Loader />
-            <div className=".root">
+            <div className="root">
                 {/* <ErrorAlert /> */}
                 <CssBaseline />
                 <AppBar
                     position="fixed"
-                    className=".appBar"
+                    className="appBar"
                 >
                     <Toolbar>
                         <IconButton
@@ -158,11 +143,11 @@ const Header = (props) => {
                             aria-label="open drawer"
                             onClick={handleDrawerOpen}
                             edge="start"
-                            className={clsx(".menuButton", open && ".hide")}
+                            className={clsx("menuButton", open && "hide")}
                             size="large">
                             <Menu />
                         </IconButton>
-                        <Typography variant="h5" className=".title" noWrap>
+                        <Typography variant="h5" className="title" noWrap>
                             App Title
                             {props.auth.role == ADMIN_ROLE && <span>Admin Panel</span>}
                         </Typography>
@@ -170,15 +155,15 @@ const Header = (props) => {
                     </Toolbar>
                 </AppBar>
                 <Drawer
-                    className=".drawer"
+                    className="drawer"
                     variant="persistent"
                     anchor="left"
                     open={open}
                     classes={{
-                        paper: ".drawerPaper",
+                        paper: "drawerPaper",
                     }}
                 >
-                    <div className=".drawerHeader">
+                    <div className="drawerHeader">
                         <IconButton onClick={handleDrawerClose} size="large">
                             {theme.direction === "ltr" ? (
                                 <ChevronLeft />

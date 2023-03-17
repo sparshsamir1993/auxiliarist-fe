@@ -36,7 +36,7 @@ let SignUpForm = (props) => {
       <Typography variant="h4" gutterBottom>
         Sign up with us.
       </Typography>
-      <Grid container spacing={3}>
+      <Grid container className="mt25">
         <Grid item xs={12}>
           <Field
             key="email"
@@ -47,7 +47,7 @@ let SignUpForm = (props) => {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={3}>
+      <Grid container className="mt25">
         <Grid item xs={12}>
           <Field
             key="password"
@@ -58,7 +58,7 @@ let SignUpForm = (props) => {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={3}>
+      <Grid container className="mt25">
         <Grid item xs={12}>
           <Field
             key="confirmPassword"
@@ -74,7 +74,7 @@ let SignUpForm = (props) => {
           <strong>{error}</strong>
         </div>
       )}
-      <Button type="submit" disabled={submitting} variant="outlined">
+      <Button type="submit" disabled={submitting} variant="outlined" className="mt25">
         Register
       </Button>
     </form>

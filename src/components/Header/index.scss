@@ -3,6 +3,10 @@
 }
 .title {
   flex-grow: 1;
+
+  span {
+    margin-left: 40px;
+  }
 }
 .appBar {
   background: "green";
@@ -10,9 +14,7 @@
 .appBarShift {
   margin-left: drawerWidth;
 }
-.menuButton {
-  margin-right: theme.spacing(2);
-}
+
 .hide {
   display: "none";
 }
@@ -26,7 +28,6 @@
 .drawerHeader {
   display: "flex";
   align-items: "center";
-  padding: theme.spacing(0, 1);
   justify-content: "flex-end";
 }
 .content {

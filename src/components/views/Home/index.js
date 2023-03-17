@@ -18,7 +18,7 @@ const Home = () => {
                     {!isLogin && <SignUpForm />}
                     <Typography
                         variant="subtitle1"
-                        className={clsx(".mt25", ".raleway")}
+                        className={clsx("mt25", "raleway")}
                         onClick={() => setAuthState(!isLogin)}
                     >
                         {isLogin
