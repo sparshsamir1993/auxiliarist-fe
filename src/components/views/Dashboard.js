@@ -41,7 +41,7 @@ class Dashboard extends Component {
       <Container maxWidth="lg">
         {this.props.auth.role == ADMIN_ROLE && (
           <Grid container spacing={3}>
-            <Grid item xs={6}>
+            <Grid item lg={6} sm={12}>
               <ResponsiveContainer
                 width="100%"
                 height="100%"
@@ -66,7 +66,7 @@ class Dashboard extends Component {
                 </LineChart>
               </ResponsiveContainer>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item lg={6} sm={12}>
               <ResponsiveContainer
                 width="100%"
                 height="100%"
@@ -98,7 +98,11 @@ class Dashboard extends Component {
             variant="h4"
             style={{ marginTop: "100px", fontFamily: "Raleway" }}
           >
-            Users can just use our mobile app. Sorry.
+            <Grid container lg={6}>
+              <div className="user-welcome">
+                Welcome
+              </div>
+            </Grid>
           </Typography>
         )}
       </Container>

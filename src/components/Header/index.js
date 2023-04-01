@@ -25,7 +25,7 @@ import { Button } from "@mui/material";
 import HeaderButtons from "../authComponents/HeaderButtons";
 import { connect } from "react-redux";
 // import ErrorAlert from "./alertComponent/CommonAlert";
-import { ADMIN_ROLE } from "../../constants";
+import { ADMIN_ROLE, USER_ROLE } from "../../constants";
 import { showLoading, hideLoading, getUser } from "../../actions";
 import { checkAndUpdateTokens } from "../../utils";
 import "../../styles/main.scss"
@@ -77,6 +77,31 @@ const Header = (props) => {
             return null;
         }
     };
+
+    const userLinks = () => {
+        if (props.auth.role === USER_ROLE) {
+            return (
+                <React.Fragment>
+                    <Typography variant="h6" align="center" className="mt10">
+                        User Links
+                    </Typography>
+                    <List>
+                        <ListItem button key={"User List"} onClick={handleDrawerClose}>
+                            <Link to="/user/profile" className="nav-link">
+                                <ListItemIcon>
+                                    <Inbox />
+                                </ListItemIcon>
+                                <ListItemText primary={"Profile"} />
+                            </Link>
+                        </ListItem>
+                    </List>
+                    <Divider />
+                </React.Fragment>
+            );
+        } else {
+            return null;
+        }
+    }
     const authLinks = () => {
         return (
             <React.Fragment>
@@ -92,6 +117,7 @@ const Header = (props) => {
                 </List>
                 <Divider />
                 {adminLinks()}
+                {userLinks()}
             </React.Fragment>
         );
     };

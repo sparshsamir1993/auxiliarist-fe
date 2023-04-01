@@ -37,7 +37,6 @@ const validate = (values, props) => {
 
 let UserEdit = (props) => {
     const history = useNavigate();
-    const [isHAdmin, setURole] = React.useState(false);
     location = useLocation();
     if (!location?.state?.email) {
         history("/admin/users");
