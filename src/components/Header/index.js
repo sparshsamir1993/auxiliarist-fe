@@ -24,7 +24,7 @@ import Loader from "../loader/Loader";
 import { Button } from "@mui/material";
 import HeaderButtons from "../authComponents/HeaderButtons";
 import { connect } from "react-redux";
-// import ErrorAlert from "./alertComponent/CommonAlert";
+import CommonAlert from "../alertComponent/CommonAlert";
 import { ADMIN_ROLE, USER_ROLE } from "../../constants";
 import { showLoading, hideLoading, getUser } from "../../actions";
 import { checkAndUpdateTokens } from "../../utils";
@@ -157,7 +157,7 @@ const Header = (props) => {
         <div>
             <Loader />
             <div className="root">
-                {/* <ErrorAlert /> */}
+                <CommonAlert />
                 <CssBaseline />
                 <AppBar
                     position="fixed"

@@ -1,25 +1,17 @@
 import React from "react";
 import { Alert } from "@mui/material";
 import { connect } from "react-redux";
-import { makeStyles, useTheme } from "@mui/material";
 import { Field } from "redux-form";
+import "./index.scss"
 
-const useStyles = makeStyles(() => ({
-    mainAlert: {
-        zIndex: 10000,
-        width: "100%",
-        position: "absolute",
-    },
-}));
 
 const CommonAlert = (props) => {
-    const classes = useStyles();
     const { showAlert, type, content } = props;
     if (!showAlert) {
         return null;
     }
     return (
-        <Alert className={classes.mainAlert} severity={type}>
+        <Alert className="mainAlert" severity={type}>
             {content}
         </Alert>
     );
