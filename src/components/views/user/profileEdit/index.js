@@ -33,7 +33,7 @@ let ProfileEdit = (props) => {
     };
     const { handleSubmit, pristine, reset, submitting, auth } = props;
     return (
-        <Container maxWidth="lg" className="mt100" >
+        <Container maxWidth="lg" className="pt24" >
             <Card className="user-edit-container" component={PaperUtil} raised={true}>
                 <Typography variant="h4" className="cardHeadingStyle">
                     User Details

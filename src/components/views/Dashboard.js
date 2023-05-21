@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Container, Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import {
   logoutUser,
   getAdminDashboardMetrics,
@@ -96,7 +96,7 @@ class Dashboard extends Component {
         {this.props.auth.role == USER_ROLE && (
           <Typography
             variant="h4"
-            style={{ marginTop: "100px", fontFamily: "Raleway" }}
+            style={{ paddingTop: "16px", fontFamily: "Raleway" }}
           >
             <Grid container lg={6}>
               <div className="user-welcome">

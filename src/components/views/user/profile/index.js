@@ -22,7 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const Profile = (props) => {
     const history = useNavigate();
     return (
-        <Container className="mt100">
+        <Container className="pt24">
             <Grid container spacing={3} rowSpacing={1}>
                 <Grid item container spacing={3} xs={6}>
                     <Grid item xs={6}>

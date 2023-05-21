@@ -1,16 +1,15 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React from "react";
 import {
     Container,
     Grid,
     Typography,
     Divider,
-    IconButton,
     Card,
     Button,
 } from "@mui/material";
 import { Save } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Field, reduxForm, change } from "redux-form";
+import { Field, reduxForm } from "redux-form";
 import RoleSelect from "../../../../adminComponents/RoleSelect";
 import {
     USER_ROLE,
@@ -18,8 +17,7 @@ import {
 } from "../../../../../constants";
 import {
     updateUserRole,
-    showLoading,
-    hideLoadings
+    showLoading
 } from "../../../../../actions";
 import { connect } from "react-redux";
 import MaterialAutoSelect from "../../../../utilComponents/MaterialAutoComplete";
@@ -53,7 +51,7 @@ let UserEdit = (props) => {
 
     const { handleSubmit, pristine, reset, submitting } = props;
     return (
-        <Container maxWidth="lg" className="mt100" >
+        <Container maxWidth="lg" className="pt24" >
             <Card className="user-edit-container" component={PaperUtil} raised={true}>
                 <Typography variant="h4" className="cardHeadingStyle">
                     User Details

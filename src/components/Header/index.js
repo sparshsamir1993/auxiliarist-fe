@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import clsx from "clsx";
 import { useTheme } from "@mui/material";
 import { Drawer } from "@mui/material";
@@ -13,15 +13,12 @@ import { Menu } from "@mui/icons-material";
 import { ChevronLeft } from "@mui/icons-material";
 import { ChevronRight } from "@mui/icons-material";
 import { ListItem } from "@mui/material";
-import StyledLink from "@mui/material";
 import { ListItemIcon } from "@mui/material";
 import { ListItemText } from "@mui/material";
 import { Inbox } from "@mui/icons-material";
-import MailIcon from "@mui/material";
 import { Link } from "react-router-dom";
 import RouterSwitch from "../RouterSwitch";
 import Loader from "../loader/Loader";
-import { Button } from "@mui/material";
 import HeaderButtons from "../authComponents/HeaderButtons";
 import { connect } from "react-redux";
 import CommonAlert from "../alertComponent/CommonAlert";
@@ -34,13 +31,14 @@ import "./index.scss"
 const Header = (props) => {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-
     const handleDrawerOpen = () => {
         setOpen(true);
     };
 
     const handleDrawerClose = () => {
-        setOpen(false);
+        if (open) {
+            setOpen(false);
+        }
     };
     const storedToken = window.sessionStorage.getItem("token");
     const storedRefreshToken = window.sessionStorage.getItem("refreshToken");
@@ -53,6 +51,7 @@ const Header = (props) => {
             props.hideLoading();
         }
     }
+
     const adminLinks = () => {
         if (props.auth.role === ADMIN_ROLE) {
             return (
@@ -154,7 +153,7 @@ const Header = (props) => {
     };
 
     return (
-        <div>
+        <div onClick={handleDrawerClose}>
             <Loader />
             <div className="root">
                 <CommonAlert />
