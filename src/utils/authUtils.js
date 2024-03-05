@@ -44,7 +44,7 @@ export const getHeaderConfigWithTokens = () => {
   if (tokens) {
     let config = {
       headers: {
-        authorization: `JWT ${tokens.token}`,
+        authorization: `Bearer ${tokens.token}`,
         "refresh-token": tokens.refreshToken,
       },
     };

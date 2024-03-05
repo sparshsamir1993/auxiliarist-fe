@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import clsx from "clsx";
 import { useTheme } from "@mui/material";
 import { Drawer } from "@mui/material";
@@ -40,17 +40,19 @@ const Header = (props) => {
             setOpen(false);
         }
     };
-    const storedToken = window.sessionStorage.getItem("token");
-    const storedRefreshToken = window.sessionStorage.getItem("refreshToken");
-    let tokens;
-    if (storedToken && storedRefreshToken) {
-        tokens = checkAndUpdateTokens(storedToken, storedRefreshToken);
-        if (!props.auth.id) {
-            props.showLoading();
-            props.getUser(tokens);
-            props.hideLoading();
+    useEffect(() => {
+        const storedToken = window.sessionStorage.getItem("token");
+        const storedRefreshToken = window.sessionStorage.getItem("refreshToken");
+        let tokens;
+        if (storedToken && storedRefreshToken) {
+            tokens = checkAndUpdateTokens(storedToken, storedRefreshToken);
+            if (!props.auth.id) {
+                props.showLoading();
+                props.getUser(tokens);
+                props.hideLoading();
+            }
         }
-    }
+    }, []);
 
     const adminLinks = () => {
         if (props.auth.role === ADMIN_ROLE) {

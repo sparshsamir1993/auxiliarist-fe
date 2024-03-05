@@ -46,7 +46,7 @@ export const registerUser = (body, history) => async (dispatch) => {
 export const getUser = (tokens) => async (dispatch) => {
   let config = {
     headers: {
-      authorization: `JWT ${tokens.token}`,
+      authorization: `Bearer ${tokens.token}`,
       "refresh-token": tokens.refreshToken,
     },
   };
