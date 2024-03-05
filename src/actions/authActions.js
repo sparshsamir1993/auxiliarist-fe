@@ -51,12 +51,17 @@ export const getUser = (tokens) => async (dispatch) => {
     },
   };
   console.log(config)
-  const user = await axios.get(`${BASE_URL}/get`, config);
-
-  let token = user.headers.token;
-  let refreshToken = user.headers["refresh-token"];
-  checkAndUpdateTokens(token, refreshToken);
-  dispatch({ type: "FETCH_USER", payload: user.data });
+  try {
+    const user = await axios.get(`${BASE_URL}/get`, config);
+    let token = user.headers.token;
+    let refreshToken = user.headers["refresh-token"];
+    checkAndUpdateTokens(token, refreshToken);
+    console.log(user.data)
+    dispatch({ type: "FETCH_USER", payload: user.data });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: "FETCH_USER", payload: null });
+  }
 };
 
 export const logoutUser = () => (dispatch) => {

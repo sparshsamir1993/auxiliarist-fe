@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 
 import LoginForm from "../../authComponents/LoginForm";
 import SignUpForm from "../../authComponents/SignUpForm";
 import clsx from "clsx";
 import "./index.scss";
+import { API_BASE_URL } from "../../../constants";
 
 const Home = () => {
     const logo = require("../../../assets/img/logo.png");
@@ -12,7 +13,7 @@ const Home = () => {
 
     return (
         <Grid container spacing={0} className="container">
-            <Grid item xs={8} className="rightArea">
+            <Grid item xs={6} className="rightArea">
                 <div className="actionArea">
                     {isLogin && <LoginForm />}
                     {!isLogin && <SignUpForm />}
@@ -25,6 +26,25 @@ const Home = () => {
                             ? "New User? Create an account."
                             : "Already got an Accout? Log in."}
                     </Typography>
+                </div>
+            </Grid>
+            <Grid item xs={6} className="leftArea">
+                <div className="actionArea">
+                    <Button
+                        className="action-child"
+                        type="submit"
+                        variant="outlined"
+                        href={`${API_BASE_URL}/user/auth/google`}
+                    >
+                        Google Login
+                    </Button>
+                    <Button
+                        className="action-child"
+                        type="submit"
+                        variant="outlined"
+                    >
+                        Facebook Login
+                    </Button>
                 </div>
             </Grid>
         </Grid>

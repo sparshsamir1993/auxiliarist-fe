@@ -20,3 +20,23 @@
 .appLogo {
   width: 100%;
 }
+.leftArea {
+  border-left: 1px solid black;
+  margin-top: 36px;
+  margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .actionArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .action-child {
+      display: block;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+  }
+}

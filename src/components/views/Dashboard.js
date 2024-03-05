@@ -98,7 +98,7 @@ class Dashboard extends Component {
             variant="h4"
             style={{ paddingTop: "16px", fontFamily: "Raleway" }}
           >
-            <Grid container lg={6}>
+            <Grid container>
               <div className="user-welcome">
                 Welcome
               </div>

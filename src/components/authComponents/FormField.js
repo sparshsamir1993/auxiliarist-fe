@@ -10,7 +10,7 @@ export const FormField = ({
   return (
     <TextField
       id="outlined-basic"
-      error={touched && error}
+      error={touched && error && invalid}
       label={label}
       variant="outlined"
       {...input}

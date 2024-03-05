@@ -9,6 +9,7 @@ import UserList from "./views/admin/user/UserList";
 import UserEdit from "./views/admin/user/UserEdit";
 import Profile from "./views/user/profile";
 import ProfileEdit from "./views/user/profileEdit";
+import ProfileResetPassword from "./views/user/profileResetPassword";
 const { BrowserRouter, Route, Routes } = require("react-router-dom");
 
 const RouterSwitch = (props) => {
@@ -22,6 +23,7 @@ const RouterSwitch = (props) => {
         <Route exact path="/admin/users/edit" element={<UserEdit />} />
         <Route exact path="/user/profile" element={<Profile />} />
         <Route exact path="/user/profile/edit" element={<ProfileEdit />} />
+        <Route exact path="/user/profile/resetpassword" element={<ProfileResetPassword />} />
       </Routes>
 
     </div>

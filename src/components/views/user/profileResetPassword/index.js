@@ -1,81 +1,73 @@
 import React from "react";
-import { connect } from "react-redux";
 import PaperUtil from "../../../utilComponents/PaperUtil";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Card, Container, Divider, Grid, Typography } from "@mui/material";
 import { Field, reduxForm } from "redux-form";
+import { FormField } from "../../../authComponents/FormField";
 import {
-    updateUser,
+    updateUserPassword,
     showLoading,
     hideLoading
 } from "../../../../actions";
-import { useLocation, useNavigate } from "react-router-dom";
-import RoleSelect from "../../../adminComponents/RoleSelect";
-import { ADMIN_ROLE, USER_ROLE } from "../../../../constants";
+import { connect } from "react-redux";
 import { Save } from "@mui/icons-material";
-import { FormField } from "../../../authComponents/FormField";
+
 let location;
 
-let ProfileEdit = (props) => {
+let ProfileResetPassword = (props) => {
+
     const history = useNavigate();
     location = useLocation();
     if (!props.auth?.email) {
         history("/user/profile");
     }
-    const changeUserDetails = async (values, dispatch) => {
+    const changeUserPassword = async (values, dispatch) => {
         let data = {
-            firstName: values.firstName ? values.firstName : props.auth.firstName,
-            lastName: values.lastName ? values.lastName : props.auth.lastName,
+            currentPassword: values.currentPassword,
+            newPassword: values.newPassword,
             id: props.auth?.id
         };
         props.showLoading();
-        await props.updateUser(data, history);
+        await props.updateUserPassword(data, history);
         props.hideLoading();
     };
     const { handleSubmit, pristine, reset, submitting, auth } = props;
-    console.log(auth)
+    // const required = value => (value ? undefined : 'Required');
     return (
         <Container maxWidth="lg" className="pt24" >
             <Card className="user-edit-container" component={PaperUtil} raised={true}>
                 <Typography variant="h4" className="cardHeadingStyle">
-                    User Details
+                    Change password
                 </Typography>
                 <form
-                    onSubmit={handleSubmit(changeUserDetails)}
+                    onSubmit={handleSubmit(changeUserPassword)}
                     className="mt25"
                 >
-                    <Grid container spacing={4}>
-                        <Grid item xs={6} className="itemStyle">
-                            <Typography variant="h5">Email</Typography>
-                        </Grid>
-                        <Grid item xs={6} className="itemStyle">
-                            <Typography variant="h5">{auth?.email}</Typography>
-                        </Grid>
-                    </Grid>
                     <Divider />
                     <Grid className="mt25" container spacing={4}>
                         <Grid item xs={6} className="itemStyle">
-                            <Typography variant="h5">First Name</Typography>
+                            <Typography variant="h5">Current password</Typography>
                         </Grid>
                         <Grid item xs={6} className={"itemStyle"}>
                             <Field
-                                key="firstName"
-                                type="firstName"
-                                name="firstName"
-                                placeholder={auth?.firstName ? auth.firstName : ""}
+                                key="currentPassword"
+                                type="password"
+                                name="currentPassword"
+                                validate={[validate]}
                                 component={FormField} />
                         </Grid>
                     </Grid>
                     <Divider />
                     <Grid className="mt25" container spacing={4}>
                         <Grid item xs={6} className="itemStyle">
-                            <Typography variant="h5">Last Name</Typography>
+                            <Typography variant="h5">New password</Typography>
                         </Grid>
                         <Grid item xs={6} className={"itemStyle"}>
                             <Field
-                                key="lastName"
-                                type="lastName"
-                                name="lastName"
-                                placeholder={auth?.lastName ? auth.lastName : ""}
+                                key="newPassword"
+                                type="password"
+                                name="newPassword"
+                                validate={validate}
                                 component={FormField} />
                         </Grid>
                     </Grid>
@@ -96,8 +88,11 @@ let ProfileEdit = (props) => {
                 </form>
             </Card>
         </Container>
-    )
+    );
 }
+
+// Validation function for the form fields
+const validate = value => (value ? undefined : 'This field is required');
 
 const mapStateToProps = (state) => {
     return {
@@ -105,16 +100,16 @@ const mapStateToProps = (state) => {
     }
 }
 
-ProfileEdit = reduxForm({
+ProfileResetPassword = reduxForm({
     form: "userProfileEdit",
-    enableReinitialize: true
-})(ProfileEdit);
+    validate
+})(ProfileResetPassword);
 
-ProfileEdit = connect(mapStateToProps, {
-    updateUser,
+ProfileResetPassword = connect(mapStateToProps, {
+    updateUserPassword,
     showLoading,
     hideLoading
-})(ProfileEdit);
+})(ProfileResetPassword);
 
 
-export default ProfileEdit;
+export default ProfileResetPassword;

@@ -21,6 +21,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Profile = (props) => {
     const history = useNavigate();
+    if (!props.auth?.email) {
+        history("/");
+    }
     return (
         <Container className="pt24">
             <Grid container spacing={3} rowSpacing={1}>
@@ -45,6 +48,9 @@ const Profile = (props) => {
                     </Grid>
                     <Grid item xs={6}>
                         <Button variant="outlined" onClick={() => history("/user/profile/edit")}><Edit /> Edit</Button>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Button variant="outlined" onClick={() => history("/user/profile/resetpassword")}><Edit /> Change Password</Button>
                     </Grid>
                 </Grid>
             </Grid>
