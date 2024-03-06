@@ -54,6 +54,7 @@ const Home = () => {
                         className="action-child"
                         type="submit"
                         variant="outlined"
+                        href={`${API_BASE_URL}/user/auth/facebook`}
                     >
                         Facebook Login
                     </Button>
