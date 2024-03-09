@@ -7,20 +7,24 @@ import clsx from "clsx";
 import "./index.scss";
 import { API_BASE_URL } from "../../../constants";
 import { checkAndUpdateTokens } from "../../../utils";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     const logo = require("../../../assets/img/logo.png");
     const [isLogin, setAuthState] = useState(true);
+    const [isUserPresent, setIsUserPresent] = useState(false);
+
+    const location = useNavigate();
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const user = urlParams.get('user');
-
         if (user) {
             let userData = JSON.parse(decodeURIComponent(user));
             const token = checkAndUpdateTokens(userData.token, userData.refreshToken);
-
+            if (token) {
+                location("/");
+            }
         }
-
     }, []);
 
     return (
