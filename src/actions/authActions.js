@@ -3,6 +3,7 @@ import { API_BASE_URL } from "../constants";
 import { checkAndUpdateTokens, checkStoredTokens } from "../utils";
 import { showAlert } from "./alertActions";
 import { FETCH_HADMIN_HOSPITAL } from "../constants/reducerConstants";
+import _ from "lodash";
 const BASE_URL = `${API_BASE_URL}/user`;
 
 export const loginUser = (body, history) => async (dispatch) => {
@@ -50,16 +51,19 @@ export const getUser = (tokens) => async (dispatch) => {
       "refresh-token": tokens.refreshToken,
     },
   };
-  console.log(config)
   try {
     const user = await axios.get(`${BASE_URL}/get`, config);
     let token = user.headers.token;
     let refreshToken = user.headers["refresh-token"];
     checkAndUpdateTokens(token, refreshToken);
     console.log(user.data)
+    if (_.get(user, "data")) {
+      window.sessionStorage.setItem("user", JSON.stringify(user.data));
+    }
     dispatch({ type: "FETCH_USER", payload: user.data });
   } catch (err) {
     console.log(err);
+    logoutUser()(dispatch);
     dispatch({ type: "FETCH_USER", payload: null });
   }
 };
@@ -69,6 +73,7 @@ export const logoutUser = () => (dispatch) => {
   if (tokens) {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("refreshToken");
+    sessionStorage.removeItem("user");
   }
   dispatch(showAlert({ type: "error", content: "Logged Out !!" }));
   dispatch({ type: "FETCH_USER", payload: {} });

@@ -13,12 +13,13 @@ import ProfileResetPassword from "./views/user/profileResetPassword";
 const { BrowserRouter, Route, Routes } = require("react-router-dom");
 
 const RouterSwitch = (props) => {
+  const storedUser = JSON.parse(window.sessionStorage.getItem("user"));
   return (
     <div className="container">
 
       <Routes>
 
-        <Route exact path="/" element={props.auth.id ? <Dashboard /> : <Home />} />
+        <Route exact path="/" element={props.auth.id || storedUser ? <Dashboard /> : <Home />} />
         <Route exact path="/admin/users" element={<UserList />} />
         <Route exact path="/admin/users/edit" element={<UserEdit />} />
         <Route exact path="/user/profile" element={<Profile />} />
