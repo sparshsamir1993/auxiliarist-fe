@@ -16,11 +16,9 @@ export const checkAndUpdateTokens = (token, refreshToken) => {
   }
   if (token && token !== storedToken) {
     window.sessionStorage.setItem("token", token);
-    console.log("\n\n refreshing token \n\n");
   }
   if (refreshToken && refreshToken !== storedRefreshToken) {
     window.sessionStorage.setItem("refreshToken", refreshToken);
-    console.log("\n\n refreshing refreshToken \n\n");
   }
   storedToken = window.sessionStorage.getItem("token");
   storedRefreshToken = window.sessionStorage.getItem("refreshToken");

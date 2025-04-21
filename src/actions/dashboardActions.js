@@ -27,7 +27,6 @@ const getUsersMetrics = async (dispatch, history) => {
         `${BASE_URL}/admin/metrics/users`,
         config
       );
-      console.log(userMetrics);
       let graphData = usersToMonthGraphData(userMetrics.data);
       let tokens = checkResponseAuthHeaders(userMetrics.headers);
       if (!tokens) {

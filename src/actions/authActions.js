@@ -56,7 +56,6 @@ export const getUser = (tokens) => async (dispatch) => {
     let token = user.headers.token;
     let refreshToken = user.headers["refresh-token"];
     checkAndUpdateTokens(token, refreshToken);
-    console.log(user.data)
     if (_.get(user, "data")) {
       window.sessionStorage.setItem("user", JSON.stringify(user.data));
     }

@@ -34,7 +34,6 @@ export const updateUserPassword = (values, history) => async (dispatch) => {
         if (config) {
             const user = await axios.patch(`${BASE_URL}/update/password`, values, config);
             let tokens = checkResponseAuthHeaders(user.headers);
-            console.log(user);
             if (user.data) {
                 dispatch({ type: "FETCH_USER", payload: user.data });
                 dispatch(showAlert({ type: "success", content: "Password Updated !" }));

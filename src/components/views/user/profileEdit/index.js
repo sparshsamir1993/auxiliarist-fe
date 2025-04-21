@@ -32,7 +32,6 @@ let ProfileEdit = (props) => {
         props.hideLoading();
     };
     const { handleSubmit, pristine, reset, submitting, auth } = props;
-    console.log(auth)
     return (
         <Container maxWidth="lg" className="pt24" >
             <Card className="user-edit-container" component={PaperUtil} raised={true}>

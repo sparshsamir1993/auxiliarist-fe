@@ -22,14 +22,11 @@ import { ADMIN_ROLE, USER_ROLE } from "../../constants";
 
 const Dashboard = (props) => {
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const getAdminData = async () => {
-      console.log(props);
       if (props.auth?.role) {
         let { role } = props.auth;
-        console.log(role)
         if (role === ADMIN_ROLE) {
-          console.log(role)
           await props.getAdminDashboardMetrics();
         }
       }

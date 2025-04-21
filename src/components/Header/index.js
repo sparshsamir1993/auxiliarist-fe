@@ -22,7 +22,7 @@ import Loader from "../loader/Loader";
 import HeaderButtons from "../authComponents/HeaderButtons";
 import { connect } from "react-redux";
 import CommonAlert from "../alertComponent/CommonAlert";
-import { ADMIN_ROLE, USER_ROLE } from "../../constants";
+import { ADMIN_ROLE, PROVIDER_ROLE, USER_ROLE } from "../../constants";
 import { showLoading, hideLoading, getUser } from "../../actions";
 import { checkAndUpdateTokens } from "../../utils";
 import "../../styles/main.scss"
@@ -103,6 +103,30 @@ const Header = (props) => {
             return null;
         }
     }
+
+    const providerLinks = () => {
+        if (props.auth.role === PROVIDER_ROLE) {
+            return (
+                <React.Fragment>
+                    <Typography variant="h6" align="center" className="mt10">
+                        Provider Links
+                    </Typography>
+                    <List>
+                        <ListItem button key={"Provider List"} onClick={handleDrawerClose}>
+                            <Link to="/provider/services" className="nav-link">
+                                <ListItemIcon>
+                                    <Inbox />
+                                </ListItemIcon>
+                                <ListItemText primary={"Services"} />
+                            </Link>
+                        </ListItem>
+                    </List>
+                    <Divider />
+                </React.Fragment>
+            );
+        }
+    }
+
     const authLinks = () => {
         return (
             <React.Fragment>
@@ -119,6 +143,7 @@ const Header = (props) => {
                 <Divider />
                 {adminLinks()}
                 {userLinks()}
+                {providerLinks()}
             </React.Fragment>
         );
     };
@@ -175,7 +200,7 @@ const Header = (props) => {
                             <Menu />
                         </IconButton>
                         <Typography variant="h5" className="title" noWrap>
-                            App Title
+                            Auxiliarist
                             {props.auth.role == ADMIN_ROLE && <span>Admin Panel</span>}
                         </Typography>
                         <HeaderButtons />

@@ -43,7 +43,6 @@ const UserList = (props) => {
             return { id, firstName, lastName, email, role }
         }
 
-        console.log(props);
         return Array.isArray(props.adminUserList) && props.adminUserList.length && props.adminUserList.map(user => {
             return rowFormat(user.id, user.firstName, user.lastName, user.email, user.role);
         })

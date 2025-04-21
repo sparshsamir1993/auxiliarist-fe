@@ -19,7 +19,6 @@ export const usersToMonthGraphData = (users) => {
             "Number of users": data[MONTH_NAMES[i]] ? data[MONTH_NAMES[i]] : 0,
         });
     }
-    console.log(arrToR);
     return arrToR;
 };
 

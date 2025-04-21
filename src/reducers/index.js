@@ -4,6 +4,8 @@ import loadingReducer from "./loadingReducer";
 import alertReducer from "./alertReducer";
 import adminUserReducer from "./admin/userReducer";
 import adminUsersToMonthAppointmentMetricsReducer from "./admin/metrics/usersToMonthMetricsReducer";
+import serviceCategoryReducer from "./providers/serviceCategoriesReducer";
+
 var formReducer = require("redux-form").reducer;
 
 export default combineReducers({
@@ -15,4 +17,7 @@ export default combineReducers({
   adminMetrics: combineReducers({
     usersToMonth: adminUsersToMonthAppointmentMetricsReducer
   }),
+  provider: combineReducers({
+    serviceCategories: serviceCategoryReducer
+  })
 });

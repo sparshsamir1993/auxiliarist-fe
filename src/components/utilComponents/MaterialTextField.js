@@ -5,13 +5,9 @@ import { TextField } from "@mui/material";
 const MaterialTextField = (props) => {
   let [textValue, changeTextValue] = useState();
 
-  const { label, input, children, initialValues, ...custom } = props;
+  const { input, children, initialValues, ...custom } = props;
   return (
     <TextField
-      variant="outlined"
-      {...input}
-      className="fullWidth"
-      label={label}
       value={
         textValue
           ? textValue
@@ -20,7 +16,8 @@ const MaterialTextField = (props) => {
             : ""
       }
       onChange={(e) => changeTextValue(e.currentTarget.value)}
-      autoComplete="no"
+      {...custom}
+      {...input}
     >
       {children}
     </TextField>
