@@ -36,3 +36,19 @@ export const getServiceProviderCategories = (userId) => async (dispatch) => {
         console.error("Error fetching service provider categories:", error);
     }
 }
+
+export const deleteServiceCategory = (categoryId) => async (dispatch) => {
+    const url = `${BASE_URL}/categories/${categoryId}`;
+    const config = getHeaderConfigWithTokens();
+    try {
+        const response = await axios.delete(url, config);
+        checkResponseAuthHeaders(response, dispatch);
+        if (response.status === 200) {
+            dispatch(showAlert({ type: "success", content: "Service category deleted successfully" }));
+            return response.data;
+        }
+    } catch (error) {
+        console.error("Error deleting service category:", error);
+        dispatch(showAlert({ content: "Failed to delete service category", type: "error" }));
+    }
+}

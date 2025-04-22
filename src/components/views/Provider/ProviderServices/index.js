@@ -16,7 +16,7 @@ import { Save } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import { getServiceProviderCategories, addProviderServiceCategory } from "../../../../actions/ServiceProvider/serviceProviderActions";
+import { getServiceProviderCategories, addProviderServiceCategory, deleteServiceCategory } from "../../../../actions/ServiceProvider/serviceProviderActions";
 import MaterialTextField from "../../../utilComponents/MaterialTextField";
 
 
@@ -43,6 +43,14 @@ let ProviderServices = (props) => {
         await props.getServiceProviderCategories(props.auth.id);
         props.reset();
         setAddCategory(false);
+    }
+
+    const handleCategoryDelete = async (categoryId) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this category?");
+        if (confirmDelete) {
+            await props.deleteServiceCategory(categoryId);
+            await props.getServiceProviderCategories(props.auth.id);
+        }
     }
     return (
         <Container maxWidth="lg" sx={{ mt: 2 }}>
@@ -125,7 +133,7 @@ let ProviderServices = (props) => {
                                             </Button>
                                         </TableCell>
                                         <TableCell>
-                                            <Button variant="contained" color="secondary">
+                                            <Button variant="contained" color="secondary" onClick={() => handleCategoryDelete(category.id)}>
                                                 Delete
                                             </Button>
                                         </TableCell>
@@ -151,7 +159,8 @@ function mapStateToProps(state, props) {
 
 ProviderServices = connect(mapStateToProps, {
     getServiceProviderCategories,
-    addProviderServiceCategory
+    addProviderServiceCategory,
+    deleteServiceCategory
 })(ProviderServices);
 
 ProviderServices = reduxForm({
